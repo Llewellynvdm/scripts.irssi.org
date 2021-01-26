@@ -1,0 +1,10 @@
+---
+-
+  authors: Nei
+  contact: 'Nei @ anti@conference.jabber.teamidiot.de'
+  default_package: conceal
+  description: 'conceals passwords on the input line'
+  license: ISC
+  name: conceal
+  url: http://anti.teamidiot.de/
+  version: '0.1'

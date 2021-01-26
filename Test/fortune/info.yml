@@ -8,4 +8,4 @@
   description: 'Send a random fortune cookie to an user in channel.'
   license: 'Public Domain'
   name: fortune
-  version: '1.3'
+  version: '1.4'

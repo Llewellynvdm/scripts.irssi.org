@@ -1,0 +1,32 @@
+---
+-
+  authors: bw1
+  changed: 2020-02-02
+  commands:
+    - gitscriptassist
+    - 'gitscriptassist autoload'
+    - 'gitscriptassist autoload add'
+    - 'gitscriptassist autoload gitadd'
+    - 'gitscriptassist autoload list'
+    - 'gitscriptassist autoload load'
+    - 'gitscriptassist autoload move'
+    - 'gitscriptassist autoload remove'
+    - 'gitscriptassist autoload startup'
+    - 'gitscriptassist autoload write'
+    - 'gitscriptassist fetch'
+    - 'gitscriptassist gitload'
+    - 'gitscriptassist help'
+    - 'gitscriptassist info'
+    - 'gitscriptassist log'
+    - 'gitscriptassist new'
+    - 'gitscriptassist pull'
+    - 'gitscriptassist search'
+    - 'gitscriptassist status'
+  contact: bw1@aol.at
+  default_package: gitscriptassist
+  description: 'script management with git'
+  license: 'Public Domain'
+  modules: 'IPC::Open3 CPAN::Meta::YAML Text::ParseWords Text::Wrap Time::HiRes'
+  name: gitscriptassist
+  url: https://scripts.irssi.org/
+  version: '0.2'

@@ -1,0 +1,12 @@
+---
+-
+  authors: Nei
+  commands:
+    - requery
+  contact: 'Nei @ anti@conference.jabber.teamidiot.de'
+  default_package: merge_resources
+  description: 'Merge queries with multiple resources of the same person.'
+  license: 'GNU GPLv2 or later'
+  name: merge_resources
+  url: http://anti.teamidiot.de/
+  version: '1.1'

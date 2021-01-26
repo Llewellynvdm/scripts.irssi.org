@@ -1,7 +1,7 @@
 ---
 -
   authors: 'Kimmo Lehto'
-  changed: 'Sun Apr 7 00:10 EET 2002'
+  changed: 2019-02-23
   commands:
     - mail
   contact: kimmo@a-men.org
@@ -9,4 +9,4 @@
   description: 'POP3 new mail notification and listing of mailbox contents. Use "/mail help" for instructions. Requires Net::POP3.'
   license: 'Public Domain'
   name: Mailcheck-POP3
-  version: '0.5'
+  version: '0.6'

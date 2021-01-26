@@ -1,0 +1,14 @@
+---
+-
+  authors: vague,bw1
+  changed: 2020-09-26
+  commands:
+    - copy
+  contact: bw1@aol.at
+  default_package: copy
+  description: 'copy a line in a paste buffer'
+  license: 'Public Domain'
+  modules: 'MIME::Base64 File::Glob'
+  name: copy
+  url: https://scripts.irssi.org/
+  version: '0.10'

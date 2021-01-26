@@ -1,8 +1,7 @@
 ---
 -
   authors: 'Larry "Vizzie" Daffner'
-  changed: 'Tue Apr 26 19:30:00 CDT 2016'
-  changes: 'Applied multiserver/store config patch from Adam Monsen'
+  changed: 2018-12-02
   commands:
     - autoaway
   contact: vizzie@airmail.net
@@ -11,4 +10,4 @@
   license: BSD
   name: 'Automagic away setting'
   url: http://www.flamingpackets.net/~vizzie/irssi/
-  version: '0.4'
+  version: '0.5'

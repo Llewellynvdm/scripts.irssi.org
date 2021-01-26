@@ -9,4 +9,4 @@
   description: 'Quickly create commands from short perl blocks'
   license: 'public domain'
   name: perlalias
-  version: '1.2'
+  version: '1.3'

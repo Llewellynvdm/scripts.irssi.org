@@ -4,6 +4,11 @@
   commands:
     - head
     - url
+    - 'url clear'
+    - 'url head'
+    - 'url list'
+    - 'url open'
+    - 'url quote'
   contact: irssi@reeler.org
   default_package: url_log
   description: 'logs urls to textfile or/and database, able to list, quote, open or `http head` saved urls.'
@@ -15,4 +20,4 @@
     - LWP::UserAgent
   name: url_log
   url: http://irssi.reeler.org/url/
-  version: '0.2'
+  version: '0.3'

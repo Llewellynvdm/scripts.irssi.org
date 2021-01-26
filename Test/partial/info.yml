@@ -1,0 +1,12 @@
+---
+-
+  authors: Nei
+  contact: 'Nei @ anti@conference.jabber.teamidiot.de'
+  default_package: partial
+  description: 'partial tab completion for Irssi'
+  license: ISC
+  modules:
+    - Tree::Trie
+  name: partial
+  url: http://anti.teamidiot.de/
+  version: '0.3'

@@ -11,4 +11,4 @@
     - Email::Simple::Creator
   name: email_msgs
   url: http://www.igordcard.com
-  version: '1.0'
+  version: '1.1'

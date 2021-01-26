@@ -1,7 +1,7 @@
 ---
 -
   authors: 'Robert Scheck'
-  changed: 1.0.0
+  changed: 1.0.1
   commands:
     - schwäbisch
   contact: irssi@robert-scheck.de
@@ -11,4 +11,4 @@
   modules: ''
   name: Schwaebisch
   url: http://ftp.robert-scheck.de/linux/irssi/scripts/
-  version: 1.0.0
+  version: 1.0.1

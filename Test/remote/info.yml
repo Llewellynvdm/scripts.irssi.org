@@ -3,10 +3,11 @@
   authors: 'David Leadbeater'
   commands:
     - remote
+    - 'remote password'
   contact: dgl@dgl.cx
   default_package: remote
   description: 'Lets you run commands remotely via /msg and a password'
   license: 'GNU GPLv2 or later'
   name: remote
   url: http://irssi.dgl.cx/
-  version: '1'
+  version: '1.1'

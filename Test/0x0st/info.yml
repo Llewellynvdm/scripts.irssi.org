@@ -1,0 +1,16 @@
+---
+-
+  authors: bw1
+  changed: 2020-04-12
+  commands:
+    - 0x0st
+  contact: bw1@aol.at
+  default_package: 0x0st
+  description: 'upload file to https://0x0.st/'
+  license: ISC
+  modules:
+    - HTTP::Request::Common
+    - LWP::UserAgent
+  name: 0x0st
+  url: https://scripts.irssi.org/
+  version: '0.03'

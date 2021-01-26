@@ -6,4 +6,4 @@
   description: 'This script talks to you *g*. It reads the chat-msgs for you.'
   license: GPL2
   name: Talk
-  version: '1.01'
+  version: '1.02'

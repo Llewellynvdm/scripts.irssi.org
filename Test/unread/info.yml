@@ -1,0 +1,12 @@
+---
+-
+  authors: 'Gregory Colpart'
+  changed: 2020-04-01
+  commands:
+    - unread
+  contact: 'reg on #evolix@freenode'
+  default_package: unread
+  description: 'reset window to unread status'
+  license: 'GPLv2 or later'
+  name: unread
+  version: '0.1'

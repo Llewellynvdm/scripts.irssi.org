@@ -2,7 +2,7 @@
 -
   authors: 'David Rudie'
   bugs: 'Probably some if it cannot read /proc.'
-  changed: 2017-06-08
+  changed: 2019-11-08
   commands:
     - sysinfo
   contact: david@inexistent.com
@@ -11,4 +11,4 @@
   license: BSD
   name: SysInfo
   url: http://www.inexistent.com/
-  version: '2.78'
+  version: '2.79'

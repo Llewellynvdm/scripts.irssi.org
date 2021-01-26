@@ -1,15 +1,15 @@
 ---
 -
-  authors: "Stefan 'tommie' Tomanek"
-  changed: '20040515'
+  authors: "Stefan 'tommie' Tomanek, bw1"
   commands:
     - leodict
-  contact: stefan@pico.ruhr.de
+  contact: bw1@aol.at
   default_package: leodict
   description: 'translates via dict.leo.org'
   license: GPLv2
   modules:
-    - LWP::Simple
+    - Mojo::DOM
+    - Mojo::UserAgent
   name: leodict
   url: http://irssi.org/scripts/
-  version: '20040515'
+  version: '20180321'

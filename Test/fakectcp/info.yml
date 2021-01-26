@@ -1,7 +1,7 @@
 ---
 -
   authors: 'Geert Hauwaerts'
-  changed: 'Wed Sep 17 23:00:11 CEST 2003'
+  changed: 2018-09-17
   commands:
     - fctcp
   contact: geert@irssi.org
@@ -10,4 +10,4 @@
   license: 'GNU General Public License'
   name: fakectcp.pl
   url: http://irssi.hauwaerts.be/default.pl
-  version: '1.03'
+  version: '1.04'

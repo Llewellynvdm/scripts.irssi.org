@@ -1,7 +1,7 @@
 ---
 -
   authors: 'Csaba Nagy'
-  changed: 'Tue Nov 26 19:55:04 CET 2002'
+  changed: 2019-02-22
   commands:
     - listen
   contact: lordpyre@negerno.hu
@@ -9,4 +9,4 @@
   description: 'A simple mp3 display script that will display what mp3 you are playing in which software (mpg123, xmms, mp3blaster, etc) to your active channel or to a query window.'
   license: 'GNU GPLv2 or later'
   name: listen
-  version: '0.2'
+  version: '0.3'

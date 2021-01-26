@@ -1,0 +1,10 @@
+---
+-
+  authors: 'Andrew Slice'
+  contact: edward.andrew.slice@gmail.com
+  default_package: ding
+  description: 'Play a given sound when messages come in.'
+  license: MIT
+  name: ding.pl
+  url: https://bitbucket.org/easlice/irssi-ding
+  version: '0.1'
