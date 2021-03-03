@@ -218,7 +218,7 @@ See [the testing read-me](../master/_testing/) for details.
 [                           hlbot ](Test/hlbot/)|  ✔   |  ✔   |  ✔   |  7   |  ✔   
 [                        hlscroll ](Test/hlscroll/)|  ✔   |  ✔   |  ✔   |  3   |  ✔   
 [                        hostname ](Test/hostname/)|  ✔   |  ✔   |  ✔   |  6   |  ✔   
-[                            iMPD ](Test/iMPD/)|  ✘   |  ✔   |  ✔   | 22   |  ☡   
+[                            iMPD ](Test/iMPD/)|  ✔   |  ✔   |  ✔   | 22   |  ✔   
 [                           ident ](Test/ident/)|  ✔   |  ✔   |  ✔   |  3   |  ✔   
 [                          identd ](Test/identd/)|  ✔   |  ✔   |  ✔   |  2   |  ✔   
 [                        idletime ](Test/idletime/)|  ✔   |  ✔   |  ✔   |  5   |  ✔   
@@ -263,7 +263,7 @@ See [the testing read-me](../master/_testing/) for details.
 [                           kills ](Test/kills/)|  ✔   |  ✔   |  ✔   | 17   |  ✔   
 [                   kline_warning ](Test/kline_warning/)|  ✔   |  ✔   |  ✔   |  3   |  ✔   
 [                       l33tmusic ](Test/l33tmusic/)|  ✘   |  ✔   |  ✔   |  6   |  ☡   
-[                          lastfm ](Test/lastfm/)|  ✔   |  ✔   |  ✔   |  9   |  ✔   
+[                          lastfm ](Test/lastfm/)|  ✔   |  ✔   |  ✔   |  6   |  ✔   
 [                       lastspoke ](Test/lastspoke/)|  ✔   |  ✔   |  ✔   |  9   |  ✔   
 [                             len ](Test/len/)|  ✔   |  ✔   |  ✔   |  0   |  ✔   
 [                         leodict ](Test/leodict/)|  ✔   |  ✔   |  ✔   |  6   |  ✔   
@@ -353,7 +353,7 @@ See [the testing read-me](../master/_testing/) for details.
 [                          ogg123 ](Test/ogg123/)|  ✔   |  ✔   |  ✔   |  4   |  ✔   
 [                         oidenty ](Test/oidenty/)|  ✔   |  ✔   |  ✔   |  6   |  ✔   
 [                              on ](Test/on/)|  ✔   |  ✔   |  ✔   |  7   |  ✔   
-[                            ontv ](Test/ontv/)|  ✔   |  ✔   |  ✔   |  9   |  ✔   
+[                           ontv2 ](Test/ontv2/)|  ✔   |  ✔   |  ✔   |  3   |  ✔   
 [                            oops ](Test/oops/)|  ✔   |  ✔   |  ✔   |  3   |  ✔   
 [                          oopsie ](Test/oopsie/)|  ✔   |  ✔   |  ✔   |  0   |  ✔   
 [                         openurl ](Test/openurl/)|  ✔   |  ✔   |  ✔   |  5   |  ✔   
@@ -488,7 +488,6 @@ See [the testing read-me](../master/_testing/) for details.
 [                        translit ](Test/translit/)|  ✔   |  ✔   |  ✔   |  3   |  ✔   
 [                         trigger ](Test/trigger/)|  ✔   |  ✔   |  ✔   | 16   |  ✔   
 [                        trustweb ](Test/trustweb/)|  ✔   |  ✔   |  ✔   | 20   |  ✔   
-[                         tvmusor ](Test/tvmusor/)|  ✔   |  ✘   |  ✔   | 17   |  ☡   
 [                   twitch_notify ](Test/twitch_notify/)|  ✔   |  ✔   |  ✔   |  0   |  ✔   
 [                   twitter_theme ](Test/twitter_theme/)|  ✔   |  ✔   |  ✔   |  0   |  ✔   
 [                        twprompt ](Test/twprompt/)|  ✔   |  ✔   |  ✔   |  3   |  ✔   
@@ -544,4 +543,4 @@ See [the testing read-me](../master/_testing/) for details.
 [                             xqf ](Test/xqf/)|  ✔   |  ✔   |  ✔   |  6   |  ✔   
 [                            ziew ](Test/ziew/)|  ✔   |  ✔   |  ✔   |  3   |  ✔   
 
-f8abdbc310ed40bc653c9c21656026182cbe27fc | 2021-01-26T01:17:21,813566665+00:00
+624a4223c7b2630334a1f2f0d1dbd6fe3591a9ab | 2021-03-03T20:15:51,408488193+00:00
