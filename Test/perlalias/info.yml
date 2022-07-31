@@ -8,6 +8,6 @@
   default_package: perlalias
   description: 'Quickly create commands from short perl blocks'
   license: 'public domain'
-  modified: '2020-04-03 18:04:40'
+  modified: '2022-02-14 07:27:10'
   name: perlalias
-  version: '1.3'
+  version: 2.0.1
