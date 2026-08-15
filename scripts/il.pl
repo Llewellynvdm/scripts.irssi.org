@@ -67,9 +67,12 @@ sub get_inputlength_max {
 	my $max_msg_bytes = 512;
 
 	my $nick = $server->{nick};
-	my $userhost = $server->{userhost} // '';
-	my $prefix = $nick;
-	$prefix .= '!' . $userhost if length $userhost;
+
+	# see irssi/src/irc/core/irc-servers.h
+	my $max_userhost_bytes = 63 + 10 + 1;
+	$max_msg_bytes = $max_msg_bytes - $max_userhost_bytes;
+
+	my $prefix = $nick . '!';
 
 	# message target, e.g., "#channel" or "nickname", if available
 	my $item = $window->{active};
