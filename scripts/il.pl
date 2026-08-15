@@ -55,6 +55,7 @@ my $help = << "END";
   /set inputlength_width 0
   /set inputlength_padding_char
   /set inputlength_countdown 0
+  /set inputlength_offset 0
 END
 
 sub get_inputlength_max {
@@ -91,7 +92,8 @@ sub get_inputlength_max {
 sub beancounter {
 	my ( $sbItem, $get_size_only ) = @_;
 
-	my ( $width, $padChar, $padNum, $countdown, $txtLength, $length );
+	my ( $width, $padChar, $padNum, $countdown, $lengthOffset );
+	my ( $txtLength, $length );
 
 	#
 	# getting settings
@@ -99,8 +101,10 @@ sub beancounter {
 	$width = Irssi::settings_get_int ( 'inputlength_width' );
 	$padChar = Irssi::settings_get_str ( 'inputlength_padding_char' );
 	$countdown = Irssi::settings_get_bool ( 'inputlength_countdown' );
+	$lengthOffset = Irssi::settings_get_int ( 'inputlength_offset' );
 
 	$txtLength = Irssi::parse_special("\$\@L");
+	$txtLength = $txtLength + $lengthOffset;
 
 	# count remaining instead of encountered characters
 	if ($countdown) {
@@ -146,6 +150,7 @@ Irssi::signal_add_last 'gui key pressed' => sub {
 
 Irssi::settings_add_int ( 'inputlength', 'inputlength_width', 0 );
 Irssi::settings_add_bool ( 'inputlength', 'inputlength_countdown', 0 );
+Irssi::settings_add_int ( 'inputlength', 'inputlength_offset', 0 );
 #
 # setting:
 #
