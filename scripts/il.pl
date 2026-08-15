@@ -27,7 +27,7 @@ use Irssi 20021105;
 use Irssi::TextUI;
 
 use vars qw($VERSION %IRSSI);
-$VERSION = '0.0.6';
+$VERSION = '0.1.0';
 %IRSSI = (
     authors     => 'Marcus Rueckert',
     contact     => 'darix@irssi.org',
@@ -36,7 +36,7 @@ $VERSION = '0.0.6';
     sbitems     => 'inputlength',
     license     => 'BSD License or something more liberal',
     url         => 'http://www.irssi.de./',
-    changed     => '2021-01-11'
+    changed     => '2026-08-15'
 );
 
 my $help = << "END";
@@ -54,18 +54,55 @@ my $help = << "END";
 %9Settings%9
   /set inputlength_width 0
   /set inputlength_padding_char
+  /set inputlength_countdown 0
 END
+
+sub get_inputlength_max {
+	my $window = Irssi::active_win();
+	my $server = $window->{active_server};
+
+	return 0 unless $server;
+
+	# account for the max overhead in each 512-byte message (See RFC 1459)
+	my $max_msg_bytes = 512;
+
+	my $nick = $server->{nick};
+	my $userhost = $server->{userhost} // '';
+	my $prefix = $nick;
+	$prefix .= '!' . $userhost if length $userhost;
+
+	# message target, e.g., "#channel" or "nickname", if available
+	my $item = $window->{active};
+	my $target = $item ? $item->{name} : '';
+
+	# :prefix PRIVMSG target :message\r\n
+	my $prefix_len  = 1 + length($prefix) + 1;
+	my $cmd_len = 8 + length($target) + 2;
+	my $crlf_len    = 2;
+
+	my $max_txt_bytes = $max_msg_bytes - ($prefix_len + $cmd_len + $crlf_len);
+
+	return $max_txt_bytes;
+}
 
 sub beancounter {
 	my ( $sbItem, $get_size_only ) = @_;
 
-	my ( $width, $padChar, $padNum, $length );
+	my ( $width, $padChar, $padNum, $countdown, $txtLength, $length );
 
 	#
 	# getting settings
 	#
 	$width = Irssi::settings_get_int ( 'inputlength_width' );
 	$padChar = Irssi::settings_get_str ( 'inputlength_padding_char' );
+	$countdown = Irssi::settings_get_bool ( 'inputlength_countdown' );
+
+	$txtLength = Irssi::parse_special("\$\@L");
+
+	# count remaining instead of encountered characters
+	if ($countdown) {
+		$txtLength = get_inputlength_max() - $txtLength;
+	}
 
 	#
 	# only one char allowed
@@ -83,7 +120,7 @@ sub beancounter {
 	#
 	# getting formatted lengh
 	#
-	$length = Irssi::parse_special ( "\$[-!$width$padChar]\@L" );
+	$length = Irssi::parse_special ( "\$[-!$width$padChar]0", "$txtLength" );
 
 	#
 	# did we have a number?
@@ -105,6 +142,7 @@ Irssi::signal_add_last 'gui key pressed' => sub {
 };
 
 Irssi::settings_add_int ( 'inputlength', 'inputlength_width', 0 );
+Irssi::settings_add_bool ( 'inputlength', 'inputlength_countdown', 0 );
 #
 # setting:
 #
