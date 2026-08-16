@@ -23,6 +23,8 @@
 #
 
 use strict;
+use warnings;
+
 use Irssi 20021105;
 use Irssi::TextUI;
 
@@ -132,9 +134,9 @@ sub beancounter {
 	#
 	# did we have a number?
 	#
-	$length =~ s/$padChar/$padNum/g if ( $padNum ne '' );
+	$length =~ s/$padChar/$padNum/g if ( defined $padNum && $padNum ne '' );
 
-	$sbItem->default_handler ( $get_size_only, "{sb $length}", undef, 1 );
+	$sbItem->default_handler ( $get_size_only, "{sb $length}", "", 1 );
 }
 
 Irssi::statusbar_item_register ( 'inputlength', 0, 'beancounter' );
