@@ -2587,10 +2587,10 @@
   filename: il.pl
   language: Perl
   license: 'BSD License or something more liberal'
-  modified: '2021-01-11 08:48:06'
+  modified: '2026-08-16 10:27:14'
   name: inputlength
   url: http://www.irssi.de./
-  version: 0.0.6
+  version: 0.1.0
 -
   authors: 'Eric Jansen'
   commands: imdb
