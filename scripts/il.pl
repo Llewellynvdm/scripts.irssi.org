@@ -3,31 +3,33 @@
 #   inputlength = "{sb length: $@L}";
 #
 #  with leading spaces: (3 spaces in example)
-#    inputlength = "{sb $[-!3]@L}"; 
+#    inputlength = "{sb $[-!3]@L}";
 #
 #  with leading char "-"
 #
-#    inputlength = "{sb $[-!3-]@L}"; 
+#    inputlength = "{sb $[-!3-]@L}";
 #
-#   you cant use numbers here. if you want to use the numbers use the 
+#   you cant use numbers here. if you want to use the numbers use the
 #   perl script
 #
 #
 # thanks to: Wouter Coekaerts <wouter@coekaerts.be> aka coekie
 #
 # add one of these 2 lines to your config in statusbar items section
-# 
-# the perl scripts  reacts on every keypress and updates the counter. 
+#
+# the perl scripts  reacts on every keypress and updates the counter.
 # if you dont need/want this the settings are maybe enough for you.
 # with the settings the item is update with a small delay.
 #
 
 use strict;
-use Irssi 20021105; 
+use warnings;
+
+use Irssi 20021105;
 use Irssi::TextUI;
 
 use vars qw($VERSION %IRSSI);
-$VERSION = '0.0.6';
+$VERSION = '0.1.0';
 %IRSSI = (
     authors     => 'Marcus Rueckert',
     contact     => 'darix@irssi.org',
@@ -36,7 +38,7 @@ $VERSION = '0.0.6';
     sbitems     => 'inputlength',
     license     => 'BSD License or something more liberal',
     url         => 'http://www.irssi.de./',
-    changed     => '2021-01-11'
+    changed     => '2026-08-15'
 );
 
 my $help = << "END";
@@ -54,28 +56,72 @@ my $help = << "END";
 %9Settings%9
   /set inputlength_width 0
   /set inputlength_padding_char
+  /set inputlength_countdown 0
+  /set inputlength_offset 0
 END
 
-sub beancounter {
-    my ( $sbItem, $get_size_only ) = @_;
+sub get_inputlength_max {
+	my $window = Irssi::active_win();
+	my $server = $window->{active_server};
 
-    my ( $width, $padChar, $padNum, $length ); 
+	return 0 unless $server;
+
+	# account for the max overhead in each 512-byte message (See RFC 1459)
+	my $max_msg_bytes = 512;
+
+	my $nick = $server->{nick};
+
+	# see irssi/src/irc/core/irc-servers.h
+	my $max_userhost_bytes = 63 + 10 + 1;
+	$max_msg_bytes = $max_msg_bytes - $max_userhost_bytes;
+
+	my $prefix = $nick . '!';
+
+	# message target, e.g., "#channel" or "nickname", if available
+	my $item = $window->{active};
+	my $target = $item ? $item->{name} : '';
+
+	# :prefix PRIVMSG target :message\r\n
+	my $prefix_len  = 1 + length($prefix) + 1;
+	my $cmd_len = 8 + length($target) + 2;
+	my $crlf_len    = 2;
+
+	my $max_txt_bytes = $max_msg_bytes - ($prefix_len + $cmd_len + $crlf_len);
+
+	return $max_txt_bytes;
+}
+
+sub beancounter {
+	my ( $sbItem, $get_size_only ) = @_;
+
+	my ( $width, $padChar, $padNum, $countdown, $lengthOffset );
+	my ( $txtLength, $length );
 
 	#
 	# getting settings
 	#
-    $width = Irssi::settings_get_int ( 'inputlength_width' );
+	$width = Irssi::settings_get_int ( 'inputlength_width' );
 	$padChar = Irssi::settings_get_str ( 'inputlength_padding_char' );
+	$countdown = Irssi::settings_get_bool ( 'inputlength_countdown' );
+	$lengthOffset = Irssi::settings_get_int ( 'inputlength_offset' );
+
+	$txtLength = Irssi::parse_special("\$\@L");
+	$txtLength = $txtLength + $lengthOffset;
+
+	# count remaining instead of encountered characters
+	if ($countdown) {
+		$txtLength = get_inputlength_max() - $txtLength;
+	}
 
 	#
 	# only one char allowed
 	#
-    $padChar =~ s/^(.).*?$/$1/;
+	$padChar =~ s/^(.).*?$/$1/;
 
 	#
 	# do we have to deal wit numbers for padding?
-    #  
-    if ( $padChar =~ m/\d/ ) {
+	#
+	if ( $padChar =~ m/\d/ ) {
 		$padNum = $padChar;
 		$padChar = '-';
 	};
@@ -83,36 +129,38 @@ sub beancounter {
 	#
 	# getting formatted lengh
 	#
-	$length = Irssi::parse_special ( "\$[-!$width$padChar]\@L" );
+	$length = Irssi::parse_special ( "\$[-!$width$padChar]0", "$txtLength" );
 
 	#
 	# did we have a number?
 	#
-    $length =~ s/$padChar/$padNum/g if ( $padNum ne '' );
+	$length =~ s/$padChar/$padNum/g if ( defined $padNum && $padNum ne '' );
 
-    $sbItem->default_handler ( $get_size_only, "{sb $length}", undef, 1 );
+	$sbItem->default_handler ( $get_size_only, "{sb $length}", "", 1 );
 }
 
 Irssi::statusbar_item_register ( 'inputlength', 0, 'beancounter' );
 #
 # ToDo:
-#  - statusbar item register doesnt support function references. 
+#  - statusbar item register doesnt support function references.
 #    so we have to stuck to the string and wait for cras.
 #
 
 Irssi::signal_add_last 'gui key pressed' => sub {
-    Irssi::statusbar_items_redraw ( 'inputlength' );
+	Irssi::statusbar_items_redraw ( 'inputlength' );
 };
 
 Irssi::settings_add_int ( 'inputlength', 'inputlength_width', 0 );
+Irssi::settings_add_bool ( 'inputlength', 'inputlength_countdown', 0 );
+Irssi::settings_add_int ( 'inputlength', 'inputlength_offset', 0 );
 #
 # setting:
-# 
+#
 # 0 means it resizes automatically
 # greater means it has at least a size of n chars.
 # it will grow if the space is to space is too small
 #
- 
+
 Irssi::settings_add_str ( 'inputlength', 'inputlength_padding_char', " " );
 #
 # char to pad with
