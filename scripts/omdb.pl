@@ -48,8 +48,10 @@ sub geturl {
 	my $r;
 	my $ff = File::Fetch->new(uri => $url);
 	my $where = $ff->fetch( to => \$rt );
-	my ( $n, $p, $s ) = fileparse($where);
-	remove_tree( $p );
+	if ( $where ne '' && -e $where && $rt ne '' ) {
+		my ( $n, $p, $s ) = fileparse($where);
+		remove_tree( $p );
+	}
 	if ( $rt ne '' ) {
 		eval {
 			$r = decode_json( $rt );
