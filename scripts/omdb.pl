@@ -1,4 +1,5 @@
 use strict;
+use warnings;
 use vars qw($VERSION %IRSSI);
 
 use Irssi;
@@ -106,9 +107,11 @@ sub draw_box {
     my ($title, $text, $footer, $colour) = @_;
     my $box = '';
     $box .= '%R,--[%n%9%U'.$title.'%U%9%R]%n'."\n";
-    foreach (split(/\n/, $text)) {
-        $box .= '%R|%n '.$_."\n";
-    }
+	if ( defined($text)  ) {
+		foreach (split(/\n/, $text)) {
+			$box .= '%R|%n '.$_."\n";
+		}
+	}
     $box .= '%R`--<%n'.$footer.'%R>->%n';
     $box =~ s/%.//g unless $colour;
     return $box;
@@ -151,17 +154,22 @@ sub print_result {
 	my ($cmd) = @_;
 	if (defined $cmd->{res}->[0]) {
 		my $r= decode_json  $cmd->{res}->[0];
-		$Text::Wrap::columns =50;
-		my $pl= wrap('Plot:  ', '       ', $r->{Plot}); 
-		$pl=~s/^Plot:  //;
-		my $t=<<"END";
+		if ( exists $r->{Title} ) {
+			$Text::Wrap::columns =50;
+			my $pl= wrap('Plot:  ', '       ', $r->{Plot}); 
+			$pl=~s/^Plot:  //;
+			my $t=<<"END";
 %9Titel:%9 $r->{Title}
 %9Year:%9  $r->{Year}
 %9Plot:%9  $pl
 %9Type:%9  $r->{Type}
 END
-		Irssi::print(draw_box($IRSSI{name}, $t, $r->{imdbID}, 1)
-				, MSGLEVEL_CLIENTCRAP);
+			Irssi::print(draw_box($IRSSI{name}, $t, $r->{imdbID}, 1)
+					, MSGLEVEL_CLIENTCRAP);
+		} else {
+			Irssi::print(draw_box($IRSSI{name}, "No result" , '', 1)
+					, MSGLEVEL_CLIENTCRAP);
+		}
 	}
 }
 
@@ -188,6 +196,9 @@ sub print_searchresult {
 	my ($cmd) = @_;
 	if (defined $cmd->{res}->[0]) {
 		my $r= decode_json  $cmd->{res}->[0];
+		if ( ! exists $r->{totalResults} ) {
+			$r->{totalResults}=0;
+		}
 		my $t;
 		my $c=0;
 		foreach my $n ( @{$r->{Search}} ) {
@@ -209,12 +220,18 @@ sub print_searchresult {
 
 sub cmd {
     my ($args, $server, $witem)=@_;
+	if (Irssi::settings_get_str('omdb_apikey') eq '' ) {
+		Irssi::print("omdb: please /set omdb_apikey"
+				, MSGLEVEL_CLIENTCRAP);
+		return;
+	}
+	#http://www.omdbapi.com/?i=tt3896198&apikey=------
+	my $url="http://www.omdbapi.com/?apikey=".
+		Irssi::settings_get_str('omdb_apikey');
     if ($args =~ m/^\s*check/) {
 		my $cmd;
 		$lastresult= {};
-		my $url="http://www.omdbapi.com/?i=tt1234567&apikey=".
-			Irssi::settings_get_str('omdb_apikey').
-			"&page=$lastpage";
+		$url.="&i=tt1234567";
 		$cmd->{cmd}=\&geturl;
 		$cmd->{args}=[$url];
 		$cmd->{last}=[
@@ -226,8 +243,7 @@ sub cmd {
 		my $cmd;
 		my $arg=$1;
 		$arg=~s/\s+/+/g;
-		my $url="http://www.omdbapi.com/?s=$arg&apikey=".
-			Irssi::settings_get_str('omdb_apikey');
+		$url.="&s=$arg";
 		$cmd->{cmd}=\&geturl;
 		$cmd->{args}=[$url];
 		$cmd->{last}=[
@@ -239,9 +255,7 @@ sub cmd {
 	} elsif ( $args =~ m/^\s*next/ ) {
 		my $cmd;
 		$lastpage++;
-		my $url="http://www.omdbapi.com/?s=$lastsearch&apikey=".
-			Irssi::settings_get_str('omdb_apikey').
-			"&page=$lastpage";
+		$url.="&s=$lastsearch&page=$lastpage";
 		$cmd->{cmd}=\&geturl;
 		$cmd->{args}=[$url];
 		$cmd->{last}=[
@@ -250,9 +264,7 @@ sub cmd {
 		background( $cmd );
 	} else {
 		my $cmd;
-		#http://www.omdbapi.com/?i=tt3896198&apikey=------
-		my $url="http://www.omdbapi.com/?i=$args&apikey=".
-			Irssi::settings_get_str('omdb_apikey');
+		$url.="&i=$args";
 		$cmd->{cmd}=\&geturl;
 		$cmd->{args}=[$url];
 		$cmd->{last}=[
