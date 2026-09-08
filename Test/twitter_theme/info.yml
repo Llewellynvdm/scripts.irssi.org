@@ -3,11 +3,13 @@
   authors: 'Sam Stoller'
   changed: 2014-11-10
   commands:
+    - twt
     - 'twt colors'
     - 'twt reset'
   contact: snstoller@gmail.com
   default_package: twitter_theme
   description: 'Assign colors to tweet message components'
+  language: Perl
   license: 'Public Domain'
   modified: '2014-11-10 12:02:36'
   name: 'Twitter Theme'

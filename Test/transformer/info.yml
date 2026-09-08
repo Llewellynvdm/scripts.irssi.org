@@ -1,0 +1,12 @@
+---
+-
+  authors: terminaldweller
+  contact: https://terminaldweller.com
+  default_package: transformer
+  description: 'transforms incoming text in the channel'
+  language: Python
+  license: 'GPL3 or newer'
+  modified: '2025-01-21 02:42:15'
+  name: transformer
+  url: https://github.com/irssi/scripts.irssi.org
+  version: 1.0.1

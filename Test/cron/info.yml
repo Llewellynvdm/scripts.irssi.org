@@ -1,12 +1,21 @@
 ---
 -
-  authors: 'Piotr Krukowiecki'
+  authors: 'Piotr Krukowiecki, KindOne'
   changed: 2004.12.12
-  contact: 'piotr \at/ krukowiecki /dot\ net'
+  commands:
+    - jobadd
+    - jobdel
+    - jobdisable
+    - jobenable
+    - jobs
+    - jobsload
+    - jobssave
+  contact: 'piotr \at/ krukowiecki /dot\ net, KindOne @ libera.chat|oftc|efnet'
   default_package: cron
   description: 'cron implementation, allows to execute commands at given interval/time'
+  language: Perl
   license: 'GNU GPLv2'
-  modified: '2014-11-12 12:23:06'
+  modified: '2026-02-16 22:39:58'
   name: 'cron aka jobs'
   url: http://www.krukowiecki.net/code/irssi/
-  version: '0.12'
+  version: '1.0'

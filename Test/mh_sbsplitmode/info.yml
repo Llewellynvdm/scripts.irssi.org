@@ -2,9 +2,12 @@
 -
   authors: 'Michael Hansen'
   changed: 'Mon Apr 24 10:59:54 CEST 2017'
+  commands:
+    - splitmode
   contact: 'mh on IRCnet #help'
   default_package: mh_sbsplitmode
   description: 'provides a statusbar item showing if your server is in splitmode and /splitmode to show details'
+  language: Perl
   license: BSD
   modified: '2017-04-27 19:01:44'
   name: mh_sbsplitmode
