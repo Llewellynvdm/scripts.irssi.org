@@ -26,6 +26,7 @@ if [[ $GITHUB_REF != refs/heads/master ]] {
     for scriptfile ($filelist) {
         if [[ ! -f "Test/${scriptfile:t:r}/failed.yml" ]] {
             cat "Test/${scriptfile:t:r}/info.yml"
+			echo
         }
     }
 } \
