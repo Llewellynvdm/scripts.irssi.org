@@ -2592,19 +2592,6 @@
   url: http://www.irssi.de./
   version: 0.1.0
 -
-  authors: 'Eric Jansen'
-  commands: imdb
-  contact: chaos@sorcery.net
-  description: 'Automatically lookup IMDB-numbers in nicknames'
-  filename: imdb.pl
-  language: Perl
-  license: GPL
-  modified: '2025-11-23 16:49:51'
-  modules: 'HTML::Entities LWP::UserAgent'
-  name: imdb
-  url: http://xyrion.org/irssi/
-  version: '1.06'
--
   authors: 'Jari Matilainen'
   commands: prompt
   contact: 'vague!#irssi@libera.chat on irc'
@@ -3032,19 +3019,6 @@
   modified: '2006-03-11 19:30:09'
   name: len
   version: 1.0.0
--
-  authors: "Stefan 'tommie' Tomanek, bw1"
-  commands: leodict
-  contact: bw1@aol.at
-  description: 'translates via dict.leo.org'
-  filename: leodict.pl
-  language: Perl
-  license: GPLv2
-  modified: '2022-01-06 17:24:38'
-  modules: 'Mojo::DOM Mojo::UserAgent'
-  name: leodict
-  url: http://irssi.org/scripts/
-  version: '20220104'
 -
   authors: 'Nico R. Wohlgemuth'
   commands: levelclear
