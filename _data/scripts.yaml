@@ -4043,6 +4043,18 @@
   url: http://www.irssi.de
   version: 0.0.3
 -
+  authors: 'bw1,Eric Jansen'
+  commands: omdb
+  contact: bw1@aol.at
+  description: 'Automatically lookup IMDB-numbers in nicknames from omdbapi'
+  filename: omdb.pl
+  language: Perl
+  license: GPL
+  modified: '2026-08-23 19:17:55'
+  name: omdb
+  url: https://scripts.irssi.org/
+  version: '0.1'
+-
   authors: 'David Leadbeater'
   commands: on
   contact: dgl@dgl.cx
